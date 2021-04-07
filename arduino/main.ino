@@ -1,6 +1,7 @@
 int pin_led_red = 7;
 int pin_led_green = 8;
 int pin_led_white = 9;
+int pin_led_send_data = 13;
 int pin_temp = A0;
 
 void setup()
@@ -9,6 +10,7 @@ void setup()
   pinMode(pin_led_red, OUTPUT);
   pinMode(pin_led_white, OUTPUT);
   pinMode(pin_led_green, OUTPUT);
+  pinMode(pin_led_send_data, OUTPUT);
 }
 
 
@@ -30,6 +32,7 @@ void loop()
   else digitalWrite(pin_led_red, LOW);
 
   // Invio temperatura sulla seriale
+  digitalWrite(pin_led_send_data,HIGH);
   Serial.print("[");
 
 
@@ -37,5 +40,7 @@ void loop()
   Serial.print(temperatura);
 
   Serial.println("]");
+
+  digitalWrite(pin_led_send_data,LOW);
   delay(1000);
 }
